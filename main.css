@@ -76,7 +76,7 @@ img {
 .centered {
   margin: 10px auto; }
 .CTA:hover { 
-  cursor: url(assets/svg/cursor.svg),pointer;
+  cursor: url(https://github.com/AntonAstanovsky/SplitToSegments/tree/master/assets/cursor.svg),pointer;
   box-shadow: 1px 1px 10px 3px rgba(0,0,0,0.2); }
 .show { 
   display: block !important; }
