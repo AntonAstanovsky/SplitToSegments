@@ -1,0 +1,193 @@
+.material-icons { font-family: 'Material Icons' !important; }
+body { margin: 0; }
+.page { padding: 0 5px; }
+
+summary:focus { 
+  outline: none; }
+/* --------------   ToolTip  -------------- */
+.tooltip:hover .tooltiptext {
+  visibility: visible; }
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1; }
+.tooltip {
+  position: relative;
+  display: inline-block; }
+/* --------------   ToolTip  -------------- */
+
+img { 
+  display: block; 
+  width: 100%; }
+
+* {
+  font-family: 'Libre Baskerville', serif !important;
+  font-size: 20px;
+  word-wrap: break-word;
+  word-break: break-word;
+  font-family: Arial; }
+.flexWrap { 
+  display: flex;
+  flex-wrap: wrap; }
+.fileContainer {
+  display: inline-block; }
+.container {
+  background-color: #E6E8E1;
+  background: radial-gradient(#E6E8E1 5%, #E6E8E1 60%, transparent 100%);
+  vertical-align: top;
+  width: 90%;
+  max-width: 300px;
+  padding: 15px 20px; }
+.container .info { 
+  text-align: left; }
+.container .info summary {
+  font-size: 0; }
+.controls { 
+  max-width: 700px;
+  text-align: center;
+  padding: 5px; }
+.controls input { 
+  padding: 5px 0;
+  width: 100%;
+  font-size: 25px; }
+.download .CTA {
+  border-color: #D18040; }
+.CTA { 
+  display: block;
+  border-radius: 30px;
+  max-width: 200px;
+  text-align: center;
+  padding: 10px 30px;
+  line-height: 30px; }
+.borderCTA {
+  border-style: solid;
+  border-width: 3px;
+}
+.grayCTA {
+  border-color: gray;
+  color: black; }
+.centered {
+  margin: 10px auto; }
+.CTA:hover { 
+  cursor: url(assets/svg/cursor.svg),pointer;
+  box-shadow: 1px 1px 10px 3px rgba(0,0,0,0.2); }
+.show { 
+  display: block !important; }
+.hidden, input { 
+  display: none !important; }
+hr { 
+  margin: 30px 0; }
+
+/* -- Modal Box -- */
+.container.modalBox {
+  background: white; }
+.modalBox { 
+  color: black;
+  text-align: center;
+  top: 20px;
+  left: 20px;
+  position: fixed;
+  width: 70%;
+  max-width: 300px;
+  padding: 20px 20px 0 20px;
+  border: 10px solid; }
+.modalBox hr { 
+  margin: 10px 0; }
+.modalBox .image {
+  padding: 15px 0;
+  display: block;
+  width: 100%; }
+.modalBox p { 
+  margin: 0; 
+  padding: 0; }
+/* -- Modal Box - end -- */
+
+.main {
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: relative; }
+
+.body {
+  margin: 90px 0 90px 0;
+  padding: 15px 0; }
+
+/* -- Menu -- */
+.inlineComponent .material-icons { 
+  font-size: 60px; }
+.menu .CTA { 
+  margin: 0;
+  stroke-width: 3px;
+  stroke: white;
+  border-radius: 0;
+  padding: 5px; }
+.menu .icon { 
+  background-color: slategray;
+  vertical-align: middle;
+  height: 60px;
+  width: 60px; }
+/* -- Menu - end -- */
+
+header { 
+  top: 0; }
+.menu {
+  vertical-align: top; 
+  width: calc(100% - 100px); }
+.inlineComponent { 
+  display: inline-block; }
+.inlineComponent a {
+  text-decoration: none;
+  color: gray; }
+header .inlineComponent a.CTA:hover { 
+  color: white; 
+  box-shadow: none; }
+header a.CTA { 
+  background-color: transparent; }
+.inlineComponent * {
+  vertical-align: top;
+  margin: 0;
+  padding: 0; }
+
+header .reminder {
+  width: 70px; }
+header .reminder, footer, header {
+  height: 70px;
+}
+footer { 
+  bottom: 0; }
+#navigationBar, footer, header { 
+  background-color: #C3AFA0; }
+footer, header {
+  display: block;
+  width: 100%;
+  position: fixed; }
+footer span {
+  padding: 10px; }
+
+/* animation */
+header .menu .icon path {
+  animation-name: strokeColorChange;
+  animation-iteration-count: infinite;
+  animation-duration: 5s; }
+@keyframes changeColor {
+  0% { fill: darkturquoise; }
+  50% { fill: red; }
+  100% { fill: darkturquoise; }
+}
+@keyframes strokeColorChange {
+  0% { stroke: darkturquoise; }
+  50% { stroke: white; }
+  100% { stroke: darkturquoise; }
+}
+/* animation - end */
+
+@media only screen and (min-width: 700px) {
+  .mobile { display: none; }
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta name="intilery-parser" content="none"><meta http-equiv="Content-Type" content="text/html" charset="utf-8" /><!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Index</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="main.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+<script src="javascript/indexController.js"></script>
+
+</head>
+<body>
+
+<div class="main">
+
+  <header>
+    <div id="menu" class="menu inlineComponent">
+      <svg class="icon CTA inlineComponent" viewBox="0 0 100 50">
+        <path d="M10 10 L90 10" />
+        <path d="M10 25 L90 25" />
+        <path d="M10 40 L90 40" />
+      </svg>
+      <div id="navigationBar" class="hidden inlineComponent">
+        <a class="navigationElement CTA inlineComponent" href="#"><i class="material-icons" data-navigate="goToHomePage">home</i></a>
+        <a class="navigationElement CTA inlineComponent" href="#"><i class="material-icons" data-navigate="goToMailersPage">mail_outline</i></a>
+      </div>
+    </div>
+    <div class="navigation inlineComponent reminder">
+      <img src="assets/fluffy.png">
+    </div>
+  </header>
+
+  <div class="body">
+    <div id="HomePage" class="Page">
+    <form class="controls" enctype="multipart/form-data">
+      <div class="flexWrap">
+        <div class="container centered fileContainer operationClick">
+          <p>Segmented Players List:</p>
+          <label id="fileLabel" for="file" class="uploadFile CTA centered borderCTA grayCTA">Upload File</label>
+          <input id="file" type=file  name="files[]">
+          <details class="info">
+            <summary class="tooltip"><img src="assets/svg/info.svg"><span class="tooltiptext">More Info</span></summary>
+            <ol>
+              <li>File Type: XLSX</li>
+              <li>Single Sheet</li>
+              <li>Column Names:
+                <ul>
+                  <li>1st Column: 'player'</li>
+                  <li>2nd Column: 'segment'</li>
+                </ul></li>
+            </ol>
+          </details>
+        </div>
+        <div class="container centered fileContainer operationClick">
+          <p>Include Players List:</p>
+          <label id="filterFileLabel" for="filterFile" class="uploadFile CTA centered borderCTA grayCTA">Upload Filter</label>
+          <input id="filterFile" type=file  name="files[]">
+          <details class="info">
+            <summary class="tooltip"><img src="assets/svg/info.svg"><span class="tooltiptext">More Info</span></summary>
+            <ol>
+              <li>File Type: XLSX</li>
+              <li>Single Sheet</li>
+              <li>Column Names:
+                <ul>
+                  <li>1st Column: 'player'</li>
+                </ul></li>
+            </ol>
+          </details>
+        </div>
+      </div>
+      <div id="download" class="container centered download hidden">
+        <label id="runFunctionLabel" for="runFunction" class="CTA centered borderCTA grayCTA">Download</label>
+        <input id="runFunction" type="button" value="Download">
+      </div>
+    </form>
+
+    <div id="segmentedPlayers" class="hidden output">&nbsp;</div>
+  </div>
+
+  <div id="MailersPage" class="Page hidden">
+    <div class="flexWrap">
+      <div class="container">
+        <p>Choose Mailer Type:</p>
+        <div class="dropdownContent">
+          <p id="monthlyMailer" class="CTA centered borderCTA grayCTA">Monthly Promotion</p>
+          <p id="sportNewsletterMailer" class="CTA centered borderCTA grayCTA">Sport Newsletter</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  <footer>
+    <p><span>&copy; Anton A.</span></p>
+  </footer>
+
+</div>
+
+<div class="modalBox hidden container centered">
+  <div class="test"></div>
+  <p class="title">&nbsp;</p>
+  <hr/>
+  <p class="content">&nbsp;</p>
+  <img class="image" src="">
+  <div class="close CTA centered borderCTA operationClose"><p>OK</p></div>
+</div>
+
+</body>
+
+<script src="javascript/main.js"></script>
+
+</html>
