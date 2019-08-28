@@ -1,0 +1,10 @@
+/* footer (EN) */
+.footer .c1 {
+    width: calc(25% - 45px - 2px) !important; }
+.footer .c2 {
+    width: calc(25% - 15px - 2px) !important; }
+.footer .c3 {
+    width: calc(25% + 40px - 2px) !important; }
+.footer .c4 {
+    width: calc(25% + 5px - 2px) !important; }
+/* footer (EN) - end */

@@ -1,5 +1,6 @@
 .material-icons { font-family: 'Material Icons' !important; }
-body { margin: 0; }
+body { margin: 0; min-height: calc(100% - 140px); }
+html { height: 100vh; overflow-x: hidden; }
 .page { padding: 0 5px; }
 
 summary:focus { 
@@ -26,8 +27,13 @@ summary:focus {
 img { 
   display: block; 
   width: 100%; }
+img.CTA { 
+  padding: 0; }
 
+p:hover { 
+  cursor: default; }
 * {
+  user-select: none;
   font-family: 'Libre Baskerville', serif !important;
   font-size: 20px;
   word-wrap: break-word;
@@ -38,11 +44,14 @@ img {
   flex-wrap: wrap; }
 .fileContainer {
   display: inline-block; }
+.Page {
+  padding: 0 15px; }
 .container {
   background-color: #E6E8E1;
-  background: radial-gradient(#E6E8E1 5%, #E6E8E1 60%, transparent 100%);
+  background: radial-gradient(#E6E8E1 5%, #E6E8E1 90%, #C3AFA0 100%);
   vertical-align: top;
   width: 90%;
+  margin: 10px;
   max-width: 300px;
   padding: 15px 20px; }
 .container .info { 
@@ -50,9 +59,7 @@ img {
 .container .info summary {
   font-size: 0; }
 .controls { 
-  max-width: 700px;
-  text-align: center;
-  padding: 5px; }
+  max-width: 700px; }
 .controls input { 
   padding: 5px 0;
   width: 100%;
@@ -107,17 +114,20 @@ hr {
 .modalBox p { 
   margin: 0; 
   padding: 0; }
+.modalBox p.CTA {
+  padding: 10px 30px;
+  margin: 0 auto 20px auto; }
 /* -- Modal Box - end -- */
 
-.main {
-  display: block;
-  margin: 0;
-  padding: 0;
-  position: relative; }
-
 .body {
-  margin: 90px 0 90px 0;
-  padding: 15px 0; }
+  background-size: cover; 
+  background: url("assets/mobyDick.jpg");
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: url("assets/mobyDick.jpg");
+  background-size: cover;
+  height: calc(100vh - 140px);
+  margin: 70px -17px 70px 0px; }
 
 /* -- Menu -- */
 .inlineComponent .material-icons { 
@@ -144,7 +154,7 @@ header {
   display: inline-block; }
 .inlineComponent a {
   text-decoration: none;
-  color: gray; }
+  color: black; }
 header .inlineComponent a.CTA:hover { 
   color: white; 
   box-shadow: none; }
@@ -160,14 +170,14 @@ header .reminder {
 header .reminder, footer, header {
   height: 70px;
 }
-footer { 
-  bottom: 0; }
-#navigationBar, footer, header { 
-  background-color: #C3AFA0; }
-footer, header {
+footer, header { 
+  color: white;
+  background-color: rgba(0,0,0,0.5);
   display: block;
   width: 100%;
-  position: fixed; }
+  position: fixed }
+footer {
+  bottom: 0; }
 footer span {
   padding: 10px; }
 
@@ -191,3 +201,7 @@ header .menu .icon path {
 @media only screen and (min-width: 700px) {
   .mobile { display: none; }
 }
+
+.dropdown .description { 
+  background-color: cadetblue;
+  color: white; }

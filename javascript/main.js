@@ -265,4 +265,26 @@ document.getElementById('filterFile').addEventListener('change', handleFilterFil
 document.getElementById('runFunction').addEventListener('click', handleFileManipulation, false);
 addEventListenersToArray(document.getElementsByClassName('operationClose'),'click',hideContainer);
 
-let pageMenu = new menu();
+let pageMenu = new headerMenu(document.getElementById("headerMenu")); 
+
+/* ----------- Mailer Template ----------- */
+let mailerOptions = {
+  type: {
+    menu: "",
+    description: "",
+  },
+  language: {
+    menu: "",
+    description: "",
+  },
+}
+let mailerOptionsDropdown = document.querySelector("[data-mailer='options']").getElementsByClassName('dropdown');
+for (let item of mailerOptionsDropdown) {
+  let menu = new MailerMenu(item);
+  let element = item.getAttribute("data-mailer");
+  mailerOptions[element].description = menu.navigator.choice;
+  mailerOptions[element].menu = menu;
+}
+
+let mailerTemplate = new mailerEditor(mailerOptions,document.getElementById('mailerDisplay'));
+/* ----------- Mailer Template ----------- */

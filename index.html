@@ -15,18 +15,16 @@
 </head>
 <body>
 
-<div class="main">
-
   <header>
-    <div id="menu" class="menu inlineComponent">
-      <svg class="icon CTA inlineComponent" viewBox="0 0 100 50">
+    <div id="headerMenu" class="menu inlineComponent" data-navigator="menu">
+      <svg class="icon CTA inlineComponent" viewBox="0 0 100 50" data-navigator="dropdown">
         <path d="M10 10 L90 10" />
         <path d="M10 25 L90 25" />
         <path d="M10 40 L90 40" />
       </svg>
-      <div id="navigationBar" class="hidden inlineComponent">
-        <a class="navigationElement CTA inlineComponent" href="#"><i class="material-icons" data-navigate="goToHomePage">home</i></a>
-        <a class="navigationElement CTA inlineComponent" href="#"><i class="material-icons" data-navigate="goToMailersPage">mail_outline</i></a>
+      <div id="navigationBar" class="hidden inlineComponent" data-navigator="navigationBar">
+        <a class="navigationElement CTA inlineComponent" href="#" data-navigate="goToHomePage"><i class="material-icons">home</i></a>
+        <a class="navigationElement CTA inlineComponent" href="#" data-navigate="goToMailersPage"><i class="material-icons">mail_outline</i></a>
       </div>
     </div>
     <div class="navigation inlineComponent reminder">
@@ -43,7 +41,7 @@
           <label id="fileLabel" for="file" class="uploadFile CTA centered borderCTA grayCTA">Upload File</label>
           <input id="file" type=file  name="files[]">
           <details class="info">
-            <summary class="tooltip"><img src="assets/info.svg"><span class="tooltiptext">More Info</span></summary>
+            <summary class="tooltip"><img class="CTA" src="assets/info.svg"><span class="tooltiptext">More Info</span></summary>
             <ol>
               <li>File Type: XLSX</li>
               <li>Single Sheet</li>
@@ -52,7 +50,7 @@
                   <li>1st Column: 'player'</li>
                   <li>2nd Column: 'segment'</li>
                 </ul></li>
-            </ol>
+            </ol><hr/>
           </details>
         </div>
         <div class="container centered fileContainer operationClick">
@@ -60,7 +58,7 @@
           <label id="filterFileLabel" for="filterFile" class="uploadFile CTA centered borderCTA grayCTA">Upload Filter</label>
           <input id="filterFile" type=file  name="files[]">
           <details class="info">
-            <summary class="tooltip"><img src="assets/info.svg"><span class="tooltiptext">More Info</span></summary>
+            <summary class="tooltip"><img class="CTA" src="assets/info.svg"><span class="tooltiptext">More Info</span></summary>
             <ol>
               <li>File Type: XLSX</li>
               <li>Single Sheet</li>
@@ -68,7 +66,7 @@
                 <ul>
                   <li>1st Column: 'player'</li>
                 </ul></li>
-            </ol>
+            </ol><hr/>
           </details>
         </div>
       </div>
@@ -82,14 +80,28 @@
   </div>
 
   <div id="MailersPage" class="Page hidden">
-    <div class="flexWrap">
+    <div class="flexWrap" data-mailer="options">
       <div class="container">
         <p>Choose Mailer Type:</p>
-        <div class="dropdownContent">
-          <p id="monthlyMailer" class="CTA centered borderCTA grayCTA">Monthly Promotion</p>
-          <p id="sportNewsletterMailer" class="CTA centered borderCTA grayCTA">Sport Newsletter</p>
+        <div class="dropdown" data-navigator="menu" data-mailer="type">
+          <p class="description operationClick centered CTA" data-navigate="chooseSportNewsletterMailer" data-navigator="dropdown">&#8681; Sport Newsletter</p>
+          <div class="dropdownContent hidden" data-navigator="navigationBar">
+            <p id="MonthlyMailer" class="CTA centered borderCTA grayCTA" data-navigate="chooseMonthlyMailer">Monthly Promotion</p>
+            <p id="SportNewsletterMailer" class="CTA centered borderCTA grayCTA" data-navigate="chooseSportNewsletterMailer">Sport Newsletter</p>
+          </div>
         </div>
       </div>
+      <div class="container">
+        <p>Choose Language:</p>
+        <div class="dropdown" data-navigator="menu" data-mailer="language">
+          <p class="description operationClick centered CTA" data-navigate="chooseEnMailer" data-navigator="dropdown">&#8681; English</p>
+          <div class="dropdownContent hidden" data-navigator="navigationBar">
+            <p id="EnMailer" class="CTA centered borderCTA grayCTA" data-navigate="chooseEnMailer">English</p>
+            <p id="DeMailer" class="CTA centered borderCTA grayCTA" data-navigate="chooseDeMailer">German</p>
+          </div>
+        </div>
+      </div>
+      <div id="mailerDisplay" class="container hidden"><p>Display:</p></div>
     </div>
   </div>
 
@@ -99,15 +111,15 @@
     <p><span>&copy; Anton A.</span></p>
   </footer>
 
-</div>
-
 <div class="modalBox hidden container centered">
   <div class="test"></div>
   <p class="title">&nbsp;</p>
   <hr/>
   <p class="content">&nbsp;</p>
   <img class="image" src="">
-  <div class="close CTA centered borderCTA operationClose"><p>OK</p></div>
+  <div>
+    <p class="close CTA centered borderCTA operationClose">OK</p>
+  </div>
 </div>
 
 </body>
