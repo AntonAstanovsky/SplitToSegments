@@ -124,12 +124,22 @@ function getChildElementsByAttribute(container,attribute,attributeValue) {
 
 class generalMenu {
   constructor(menu,type,action) {
+    this.type = type;
     this.CTA = menu.querySelector("[data-navigator='dropdown']");
-    this.navigator = new navBar(getChildElementsByAttribute(menu,"data-navigator","navigationBar")[0],type,action);
+    this.navigator = new navBar(getChildElementsByAttribute(menu,"data-navigator","navigationBar")[0],this.type,action);
     this.CTA.addEventListener('click', () => { this.navigator.toggleState(); }, false);
   }
   getChoice() {
-    return this.navigator.choice;
+    return this.navigator.getChoice().replace(this.type,'').toLowerCase();
+  }
+  getChoiceCTA() {
+    return this.navigator.getChoiceCTA();
+  }
+  setInnerHTML(text) {
+    this.CTA.innerHTML = text;
+  }
+  getNavigator() {
+    return this.navigator;
   }
 }
 
@@ -146,17 +156,15 @@ class MailerMenu extends generalMenu {
 }
 
 class navBar {
+
   constructor(navigationBar,type,action) {
     this.navigationBar = navigationBar;
     this.state = false;
     this.type = type;
     this.action = action;
     this.choice = null;
-
-    let children = this.navigationBar.children;
-    for (let item of children) {
-      item.addEventListener('click', () => { this.navigate(event); this.toggleState(); }, false);
-    }
+    this.lastClicked = null;
+    this.addClickEventListenerToNavigation( () => { this.navigate(event); this.toggleState(); } );
 
     /* ---- default 'this.choice' ---- */
     let defaultChoice = new MouseEvent("click",{
@@ -164,9 +172,17 @@ class navBar {
       cancelable: true,
       view: window
     });
-    Object.defineProperty(defaultChoice, 'target', {value: children[0], enumerable: true});
+    Object.defineProperty(defaultChoice, 'target', {value: this.navigationBar.children[0], enumerable: true});
     this.navigate(defaultChoice);
   }
+
+  addClickEventListenerToNavigation(handler) {
+    let children = this.navigationBar.children;
+    for (let item of children) {
+      item.addEventListener('click', handler, false);
+    }
+  }
+
   toggleState() {
     if (!this.state) {
       showElement(this.navigationBar);
@@ -176,73 +192,98 @@ class navBar {
       this.state = false;
     }
   }
+
   navigate(event) {
-    let clickedCTA = event.target;
-    while (clickedCTA.getAttribute("data-navigate") == null) { clickedCTA = clickedCTA.parentElement; }
-    let destination = clickedCTA.getAttribute("data-navigate");
+    this.lastClicked = event.target;
+    while (this.lastClicked.getAttribute("data-navigate") == null) { this.lastClicked = this.lastClicked.parentElement; }
+    let destination = this.lastClicked.getAttribute("data-navigate");
     this.choice = destination.slice(destination.indexOf(this.action) + this.action.length,destination.length);
     if (this.choice.includes(this.type)) {
       hideByClass(this.type);
       showElement(document.getElementById(this.choice));
     }
   }
+
   getChoice() {
-    return getChildElementsByAttribute(this.navigationBar,"data-navigate", this.action + this.choice)[0].innerText;
+    return this.choice;
   }
+
+  getChoiceCTA() {
+    return this.lastClicked;
+  }
+
   getNavigationBar() {
     return this.navigationBar;
   }
+
 }
 
 class mailerEditor {
-  constructor(options,displayElement) {
+  constructor(typeMenu,languageMenu,displayElement) {
     this.content = {
       css: '',
       body: '',
     }
     this.display = displayElement;
-    this.language = "en";
-    this.type = "sportnewsletter";
-    this.options = options;
-    this.setReader();
-
-    this.addOptionChangeEvent(this.options,"type");
-    this.addOptionChangeEvent(this.options,"language");
-  }
-
-  addOptionChangeEvent(menuList,menuType) {
-    let menuArray = toArray(menuList[menuType].menu.navigator.getNavigationBar().children);
-    for (let item of menuArray) {
-      item.addEventListener('click',() => { this.optionChange.apply(this,[menuType]); });
+    this.userSelection = { ["type"]: new MailerMenu(typeMenu), ["language"]: new MailerMenu(languageMenu) };
+    this.settings = {
+      ["type"]: "sportnewsletter",
+      ["language"]: "en",
     }
+    for(let key in this.userSelection) {
+      //this.userSelection[key].getNavigator().addClickEventListenerToNavigation( () => { this.settingChange.apply(this,[key]); } )
+      //this.settingChange(key);
+    }
+    this.readContent("language");
   }
 
-  optionChange(menuType) {
-    this.options[menuType].description = this.options[menuType].menu.navigator.getChoice().replace("Mailer","");
-    this.options[menuType].menu.CTA.innerHTML = '&#8681; ' + this.options[menuType].description;
-    this.setReader();
+  getSettingChoice(menuType) {
+    return this.userSelection[menuType].getChoice();
   }
 
-  setReader() {
-    this.content.css = this.readContent('https://raw.githubusercontent.com/AntonAstanovsky/SplitToSegments/master/mailerTemplates/' + this.language + '.css');
+  getSettingChoiceCTA(menuType) {
+    return this.userSelection[menuType].getChoiceCTA();
+  }
+
+  setSettings(menuType) {
+    let description = this.getSettingChoice(menuType);
+    this.settings[menuType] = this.getSettingChoiceCTA(menuType);
+    this.userSelection[menuType].setInnerHTML('&#8681; ' + this.getSettingChoiceCTA(menuType).innerHTML);
+  }
+
+  settingChange(menuType) {
+    this.setSettings(menuType);
+    this.readContent(menuType);
+  }
+
+  readContent(menuType) {
+    this.content.css = this.readFrom('https://raw.githubusercontent.com/AntonAstanovsky/SplitToSegments/master/mailerTemplates/' + this.settings[menuType] + '.css');
     this.display.innerText = this.content.css;
     showElement(this.display);
   }
 
-  readContent(url) {
+  readFrom(url) {
     let content = '';
+    /*readTextSection(url, (response) => { 
+        //console.log("res: " + response); 
+        content = response; 
+        }
+    );*/
     let awaitFunction = async function() {
       let promise = new Promise(function(resolve, reject) {
-        readTextSection(url, (response) => { console.log("res: " + response); } );
+        readTextSection(url, (response) => { 
+          console.log("res: " + response); 
+          content = response; } );
       });
+      let result = await promise;
+      console.log("content after: " + content);
       promise.then( 
         result => console.log(result),
-        error =>  console.log(error)
+        error =>  console.log(error),
       );
-      let waitStatus = await awaitFunction();
-      console.log("content after: " + content);
     }
-    console.log("content: " + content);
+    
+    return content;
   }
 
 }

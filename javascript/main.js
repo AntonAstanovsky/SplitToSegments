@@ -268,23 +268,6 @@ addEventListenersToArray(document.getElementsByClassName('operationClose'),'clic
 let pageMenu = new headerMenu(document.getElementById("headerMenu")); 
 
 /* ----------- Mailer Template ----------- */
-let mailerOptions = {
-  type: {
-    menu: "",
-    description: "",
-  },
-  language: {
-    menu: "",
-    description: "",
-  },
-}
-let mailerOptionsDropdown = document.querySelector("[data-mailer='options']").getElementsByClassName('dropdown');
-for (let item of mailerOptionsDropdown) {
-  let menu = new MailerMenu(item);
-  let element = item.getAttribute("data-mailer");
-  mailerOptions[element].description = menu.navigator.choice;
-  mailerOptions[element].menu = menu;
-}
-
-let mailerTemplate = new mailerEditor(mailerOptions,document.getElementById('mailerDisplay'));
+let mailerOptions = {};
+let mailerTemplate = new mailerEditor(document.querySelector("[data-navigator='menu'][data-mailer='type']"),document.querySelector("[data-navigator='menu'][data-mailer='language']"),document.getElementById('mailerDisplay'));
 /* ----------- Mailer Template ----------- */

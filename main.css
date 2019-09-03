@@ -1,6 +1,12 @@
 .material-icons { font-family: 'Material Icons' !important; }
-body { margin: 0; min-height: calc(100% - 140px); }
-html { height: 100vh; overflow-x: hidden; }
+body { 
+  margin: 0; 
+  min-height: calc(100% - 140px); }
+html { 
+  background: url("assets/mobyDick.jpg");
+  background-size: cover;
+  height: 100vh; 
+  overflow-x: hidden; }
 .page { padding: 0 5px; }
 
 summary:focus { 
@@ -58,8 +64,6 @@ p:hover {
   text-align: left; }
 .container .info summary {
   font-size: 0; }
-.controls { 
-  max-width: 700px; }
 .controls input { 
   padding: 5px 0;
   width: 100%;
@@ -119,13 +123,9 @@ hr {
   margin: 0 auto 20px auto; }
 /* -- Modal Box - end -- */
 
-.body {
-  background-size: cover; 
-  background: url("assets/mobyDick.jpg");
+.body { 
   overflow-y: scroll;
   overflow-x: hidden;
-  background: url("assets/mobyDick.jpg");
-  background-size: cover;
   height: calc(100vh - 140px);
   margin: 70px -17px 70px 0px; }
 
@@ -154,7 +154,7 @@ header {
   display: inline-block; }
 .inlineComponent a {
   text-decoration: none;
-  color: black; }
+  color: #E6E8E1; }
 header .inlineComponent a.CTA:hover { 
   color: white; 
   box-shadow: none; }
@@ -170,9 +170,10 @@ header .reminder {
 header .reminder, footer, header {
   height: 70px;
 }
+#navigationBar, footer, header {
+  background: rgba(0,0,0,0.5); }
 footer, header { 
   color: white;
-  background-color: rgba(0,0,0,0.5);
   display: block;
   width: 100%;
   position: fixed }
