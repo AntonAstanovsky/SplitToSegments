@@ -1,0 +1,98 @@
+* {
+    word-wrap: break-word;
+    word-break: break-word;
+    font-family: Arial; }
+td { 
+    display: block; }
+td, * { 
+    margin: 0;
+    padding: 0; }
+img, table, tbody, tr, td, p { 
+    width: 100%;
+    display: block; }
+table, tbody, tr {
+    border-collapse: collapse !important; }
+
+/* hide 'view in browser' */
+p[class=viewInBrowser]:not(a) {
+    display: none; }
+/* hide 'view in browser' - end */
+
+/*  Mobile  */
+@media screen and (max-width: 549px) {  }
+/*  Mobile  - end  */
+
+/*  Mobile - Background  */
+@media screen and (max-width: 850px) { 
+    .bg { 
+        background: transparent !important; }
+ }
+/*  Mobile - Background  - end  */
+
+/*  Desktop  */
+@media screen and (min-width: 550px) {
+    .heading { 
+        background-color: transparent !important; }
+    .heading p, .heading a, .heading span { 
+        color: white !important; }
+    .bg {
+        background: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/bg/footballRugbyCricketBasketball.png); 
+        background-attachment: fixed; 
+        background-size: contain; 
+        background-repeat: no-repeat; }
+    .title { 
+        text-align: left !important; }
+    .mainOffer .desktopViewColumn1 { 
+        width: 340px !important; }
+    .mainOffer .desktopViewColumn2 { 
+        width: 10px !important; }
+    .golf .desktopViewColumn3 { 
+        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/golf/desktop.jpg); }
+    .tennis .desktopViewColumn3 { 
+        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/tennis/desktop.jpg); }
+    .football .desktopViewColumn3 { 
+        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/football/desktop.jpg); }
+    .footballWomen .desktopViewColumn3 { 
+        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/footballWomen/desktop.jpg); }
+    .cricket .desktopViewColumn3 { 
+        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/cricket/desktop.jpg); }
+    .rugby .desktopViewColumn3 { 
+        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/rugby/desktop.jpg); }
+    .mainOffer .desktopViewColumn3 { 
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 135px !important; }
+    .desktopViewColumn1, .desktopViewColumn3 { 
+        width: 230px !important; }
+    .desktopViewColumn2 { 
+        width: 10px !important; }
+    .CTA { 
+        max-width: 100px; }
+    .mainOffer .calendar { 
+        direction: rtl; }
+    .calendarTeams { 
+        margin: 6px 0; }
+    .desktopView { 
+        display: table-cell !important; }
+    .desktopView img { display: none !important; }
+    .desktop { 
+        display: block !important; 
+        display: initial !important; }
+    .mobile { 
+        display: none; }
+    .CTA * { 
+        font-size: 25px !important; }
+    /* desktop footer */
+    .footer tr {
+        width: 24% !important;
+        display: inline-block !important; }
+    .footer a {
+        width: 95%;
+        border-bottom: 0; }
+    .footer td {
+        border-right: 1px dashed gray;
+        border-bottom: 0 !important; }
+    /* desktop footer - end */
+}
+/*  Desktop  - end  */
