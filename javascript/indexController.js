@@ -223,11 +223,6 @@ class mailerEditor {
     this.content = {
       css: '',
       body: '',
-      header: `<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-      <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-      <title>Weekly Sports Newsletter</title>`,
-      footer: `</html>`,
     }
     this.display = displayElement;
     this.userSelection = { ["type"]: new MailerMenu(typeMenu), ["language"]: new MailerMenu(languageMenu) };
@@ -242,7 +237,6 @@ class mailerEditor {
     this.readContent("language",".css","css");
     this.readContent("type",".css","css");
     this.readContent("type",this.settings["language"].toUpperCase() + ".html","body");
-    //this.combineContent();
   }
 
   getSettingChoice(menuType) {
@@ -281,14 +275,17 @@ class mailerEditor {
     promise.then(
       result => {
         content = result;
-        this.content[output] = result;
+        this.content[output] += result;
       }, 
       error => content = 'failed'
     );
   }
 
   combineContent() {
-    let result = this.content.header + `<style>` + this.content.css + `</style>` + this.content.body;
+    let result = `<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+      <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      <title>Weekly Sports Newsletter</title><style>` + this.content.css + `</style></head>` + this.content.body;
     this.display.contentDocument.getElementsByTagName('html')[0].innerHTML = result;
     showElement(this.display);
     return result;

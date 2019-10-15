@@ -209,6 +209,7 @@ header .menu .icon path {
 
 /* ---- Mailer Display ---- */
 #mailerDisplay { 
+  background: white;
   display: block; 
   height: 600px;
   width: 100%; }
