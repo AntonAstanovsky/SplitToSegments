@@ -223,6 +223,13 @@ class mailerEditor {
     this.content = {
       css: '',
       body: '',
+      header: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml">
+      <head><meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+      <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      <title>Weekly Sports Newsletter</title>`,
+      footer: `</html>`,
     }
     this.display = displayElement;
     this.userSelection = { ["type"]: new MailerMenu(typeMenu), ["language"]: new MailerMenu(languageMenu) };
@@ -231,10 +238,13 @@ class mailerEditor {
       ["language"]: "en",
     }
     for(let key in this.userSelection) {
-      //this.userSelection[key].getNavigator().addClickEventListenerToNavigation( () => { this.settingChange.apply(this,[key]); } )
+      this.userSelection[key].getNavigator().addClickEventListenerToNavigation( () => { this.settingChange.apply(this,[key]); } )
       //this.settingChange(key);
     }
-    this.readContent("language");
+    this.readContent("language",".css","css");
+    //this.readContent("type",".css","css");
+    this.readContent("type",this.settings["language"].toUpperCase() + ".html","body");
+    this.combineContent();
   }
 
   getSettingChoice(menuType) {
@@ -256,34 +266,34 @@ class mailerEditor {
     this.readContent(menuType);
   }
 
-  readContent(menuType) {
-    this.content.css = this.readFrom('https://raw.githubusercontent.com/AntonAstanovsky/SplitToSegments/master/mailerTemplates/' + this.settings[menuType] + '.css');
-    this.display.innerText = this.content.css;
-    showElement(this.display);
+  readContent(menuType,fileType,output) {
+    let content = '';
+    let fileName = this.settings[menuType] + fileType;
+    let promise = new Promise(function(resolve,reject) {
+      readTextSection('https://raw.githubusercontent.com/AntonAstanovsky/SplitToSegments/master/mailerTemplates/' + fileName, 
+        (response) => { 
+          if(response) { 
+            resolve(response); 
+            //console.log(response); 
+          } 
+          else { reject(new Error('readContent function Error: ' + response)); }
+        } 
+      );
+    });
+    promise.then(
+      result => {
+        content = result;
+        this.content[output] = result;
+      }, 
+      error => content = 'failed'
+    );
   }
 
-  readFrom(url) {
-    let content = '';
-    /*readTextSection(url, (response) => { 
-        //console.log("res: " + response); 
-        content = response; 
-        }
-    );*/
-    let awaitFunction = async function() {
-      let promise = new Promise(function(resolve, reject) {
-        readTextSection(url, (response) => { 
-          console.log("res: " + response); 
-          content = response; } );
-      });
-      let result = await promise;
-      console.log("content after: " + content);
-      promise.then( 
-        result => console.log(result),
-        error =>  console.log(error),
-      );
-    }
-    
-    return content;
+  combineContent() {
+    let result = this.content.header + `<style>` + this.content.css + `</style>` + `<body>` + this.content.body + `</body>` + this.content.footer;
+    this.display.innerHTML = result;
+    showElement(this.display);
+    return result;
   }
 
 }

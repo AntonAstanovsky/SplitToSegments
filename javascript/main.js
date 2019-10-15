@@ -269,5 +269,6 @@ let pageMenu = new headerMenu(document.getElementById("headerMenu"));
 
 /* ----------- Mailer Template ----------- */
 let mailerOptions = {};
-let mailerTemplate = new mailerEditor(document.querySelector("[data-navigator='menu'][data-mailer='type']"),document.querySelector("[data-navigator='menu'][data-mailer='language']"),document.getElementById('mailerDisplay'));
+let mailerTemplate = new mailerEditor(document.querySelector("[data-navigator='menu'][data-mailer='type']"),
+  document.querySelector("[data-navigator='menu'][data-mailer='language']"),document.getElementById('mailerDisplay'));
 /* ----------- Mailer Template ----------- */

@@ -127,7 +127,7 @@ hr {
   overflow-y: scroll;
   overflow-x: hidden;
   height: calc(100vh - 140px);
-  margin: 70px -17px 70px 0px; }
+  margin: 70px 0px 70px 0px; }
 
 /* -- Menu -- */
 .inlineComponent .material-icons { 
@@ -206,3 +206,9 @@ header .menu .icon path {
 .dropdown .description { 
   background-color: cadetblue;
   color: white; }
+
+/* ---- Mailer Display ---- */
+#mailerDisplay { 
+  display: block; 
+  width: 100%; }
+/* ---- Mailer Display ---- */
