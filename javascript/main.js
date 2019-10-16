@@ -248,8 +248,22 @@ function writeToCSV(fileName, data, type="data:text/csv;charset=utf-8,") {
   document.body.removeChild(a);
 }
 
+function writeToHTML(filename, data) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
 //-------------------------------------------------//
 //-------------------------------------------------//
+
+function showPreviewMailer() {
+  mailerTemplate.readMailerContent();
+}
 
 const fileHeader = {
   player: "player",
@@ -271,4 +285,6 @@ let pageMenu = new headerMenu(document.getElementById("headerMenu"));
 let mailerOptions = {};
 let mailerTemplate = new mailerEditor(document.querySelector("[data-navigator='menu'][data-mailer='type']"),
   document.querySelector("[data-navigator='menu'][data-mailer='language']"),document.getElementById('mailerDisplay'));
+
+document.getElementById('previewMailerCTA').addEventListener('click', showPreviewMailer, false);
 /* ----------- Mailer Template ----------- */

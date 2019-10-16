@@ -232,11 +232,15 @@ class mailerEditor {
     }
     for(let key in this.userSelection) {
       this.userSelection[key].getNavigator().addClickEventListenerToNavigation( () => { this.settingChange.apply(this,[key]); } )
-      //this.settingChange(key);
     }
     this.readContent("language",".css","css");
     this.readContent("type",".css","css");
     this.readContent("type",this.settings["language"].toUpperCase() + ".html","body");
+  }
+
+  readMailerContent() {
+    this.display.contentDocument.getElementsByTagName('html')[0].innerHTML = this.combineContent();
+    showElement(this.display);
   }
 
   getSettingChoice(menuType) {
@@ -283,11 +287,11 @@ class mailerEditor {
 
   combineContent() {
     let result = `<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-      <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-      <title>Weekly Sports Newsletter</title><style>` + this.content.css + `</style></head>` + this.content.body;
-    this.display.contentDocument.getElementsByTagName('html')[0].innerHTML = result;
-    showElement(this.display);
+                  <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+                  <title>Weekly Sports Newsletter</title><style>` + this.content.css + `</style></head>` + `<body>` + this.content.body + `</body>`;
+    let document = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns="http://www.w3.org/1999/xhtml">` + result + `</html>`;
     return result;
   }
 
