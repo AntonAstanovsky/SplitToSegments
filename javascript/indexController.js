@@ -143,6 +143,17 @@ class generalMenu {
   }
 }
 
+class dropdownMenu extends generalMenu {
+  constructor(menu,type,action) {
+    super(menu,type,action);
+    this.updateChoice();
+    this.navigator.addClickEventListenerToNavigation(()=>{ this.updateChoice(); });
+  }
+  updateChoice() {
+    this.setInnerHTML('&#8681;&nbsp;' + this.navigator.getChoice().replace(this.type,''));
+  }
+}
+
 class headerMenu extends generalMenu {
   constructor(menu) {
     super(menu,"Page","goTo");

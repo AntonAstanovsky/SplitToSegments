@@ -114,11 +114,37 @@ function handleFileManipulation(event) {
     index ++;
   }
 
-  let players = new playerList(segmentedPlayer);
-  for(let player of allPlayers) {
-    players.addPlayer(new segmentedPlayer(player[fileHeader.player],player[fileHeader.segment] || 'all'));
+  let fileType = 'segmentedPlayer';
+  let players;
+  let attributes = [];
+  for (attribute in allPlayers[0]) {
+    if (attribute == fileHeader.player || attribute == fileHeader.segment) { continue; }
+    attributes.push(attribute);
+    fileType = 'extendedPlayer';
   }
-  players.downloadCSVbyAttribute();
+
+  switch(fileType) {
+    case 'segmentedPlayer':
+      players = new playerList(segmentedPlayer);
+      for(let player of allPlayers) {
+        players.addPlayer(new segmentedPlayer(player[fileHeader.player],player[fileHeader.segment] || 'all'));
+      }
+      players.downloadCSVbyAttribute();
+      break;
+    case 'extendedPlayer':
+      players = new playerList(extendedPlayer);
+      for(let player of allPlayers) {
+        let other = [];
+        for (i=0; i<attributes.length; i++) {
+          other.push(player[attributes[i]]);
+        }
+        players.addPlayer(new extendedPlayer(player[fileHeader.player],player[fileHeader.segment],other || 'all',player["email"]));
+      }
+      players.downloadCSVbyAttribute();
+      break;
+    default:
+  }
+
 }
 
 /* ------ player structure ------ */
@@ -128,11 +154,7 @@ class basicPlayer {
     this.id = id;
   }
 
-  toString() {
-    return this.id;
-  }
-
-  toCSV() {
+  toStringLine() {
     return this.id;
   }
 
@@ -145,8 +167,23 @@ class segmentedPlayer extends basicPlayer {
     this.segment = segment;
   }
 
-  toString() {
+  toStringLine() {
     return this.id + "," + this.segment;
+  }
+
+}
+
+class extendedPlayer extends segmentedPlayer {
+
+  constructor(id,segment,...other) {
+    super(id,segment);
+    this.other = other;
+  }
+
+  toStringLine() {
+    let otherString = '';
+    this.other.forEach((item)=>{ otherString = otherString + "," + item; })
+    return this.id + "," + this.segment + otherString;
   }
 
 }
@@ -159,6 +196,9 @@ class playerList {
       case segmentedPlayer:
         this.playerType = segmentedPlayer;
         break;
+      case extendedPlayer:
+        this.playerType = extendedPlayer;
+        break;
       default:
         this.playerType = basicPlayer;
     }
@@ -168,18 +208,10 @@ class playerList {
     this.players.push(player);
   }
 
-  toString() {
+  toStringLine() {
     let result = '';
     for (let player of this.players) {
-      result += player.toString() + '\n';
-    }
-    return result;
-  }
-
-  toCSV() {
-    let result = '';
-    for (let player of this.players) {
-      result += player.toCSV() + '\n';
+      result += player.toStringLine() + '\n';
     }
     return result;
   }
@@ -200,7 +232,7 @@ class playerList {
     for (let attr of splitByAttribute.keys()) {
       let output = '';
       for (let item of splitByAttribute.get(attr)) {
-        output += item.toCSV() + '\n';
+        output += item.toStringLine() + '\n';
       }
       writeToCSV(attr,output);
     }
@@ -219,11 +251,7 @@ class playerList {
 }
 
 function runTest() {
-  playerListTest = new playerList(segmentedPlayer);
-  playerListTest.addPlayer(new segmentedPlayer('1','HR'));
-  playerListTest.addPlayer(new segmentedPlayer('2','SG'));
-  console.log('Player List:' + '\n' + playerListTest.toString());
-  playerListTest.downloadCSVbyAttribute();
+  
 }
 /* ------ player structure - end ------ */
 
@@ -268,6 +296,7 @@ function showPreviewMailer() {
 const fileHeader = {
   player: "player",
   segment: "segment",
+  other: 'temp',
 }
 
 const segmentedPlayersFile = document.getElementById('file');
@@ -287,4 +316,9 @@ let mailerTemplate = new mailerEditor(document.querySelector("[data-navigator='m
   document.querySelector("[data-navigator='menu'][data-mailer='language']"),document.getElementById('mailerDisplay'));
 
 document.getElementById('previewMailerCTA').addEventListener('click', showPreviewMailer, false);
+
+let fileType;
+window.onload = function() {
+  fileType = new dropdownMenu(document.getElementById('outputType').querySelector("[data-navigator='menu']"),'Type','choose');
+}
 /* ----------- Mailer Template ----------- */
