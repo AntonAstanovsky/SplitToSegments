@@ -1,99 +1,129 @@
 * {
-    word-wrap: break-word;
-    word-break: break-word;
-    font-family: Arial; }
-td { 
-    display: block; }
-td, * { 
-    margin: 0;
-    padding: 0; }
+  word-wrap: break-word;
+  word-break: break-word;
+  font-family: Arial; }
+body { 
+  margin: 0; }
+td, body { 
+  padding: 0;
+  display: block; }
 img, table, tbody, tr, td, p { 
-    width: 100%;
-    display: block; }
+  width: 100%;
+  display: block; }
 table, tbody, tr {
-    border-collapse: collapse !important; }
+  border-collapse: collapse !important; }
 
 /* hide 'view in browser' */
 p[class=viewInBrowser]:not(a) {
-    display: none; }
+  display: none; }
 /* hide 'view in browser' - end */
-
-/*  Mobile  */
-@media screen and (max-width: 549px) {  }
-/*  Mobile  - end  */
-
-/*  Mobile - Background  */
-@media screen and (max-width: 850px) { 
-    .bg { 
-        background: transparent !important; }
- }
-/*  Mobile - Background  - end  */
 
 /*  Desktop  */
 @media screen and (min-width: 550px) {
-    .heading { 
-        background-color: transparent !important; }
-    .heading p, .heading a, .heading span { 
-        color: white !important; }
-    .bg {
-        background: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/bg/footballRugbyCricketBasketball.png); 
-        background-attachment: fixed; 
-        background-size: contain; 
-        background-repeat: no-repeat;
-        background-position: center; }
-    .title { 
-        text-align: left !important; }
-    .mainOffer .desktopViewColumn1 { 
-        width: 340px !important; }
-    .mainOffer .desktopViewColumn2 { 
-        width: 10px !important; }
-    .golf .desktopViewColumn3 { 
-        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/golf/desktop.jpg); }
-    .tennis .desktopViewColumn3 { 
-        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/tennis/desktop.jpg); }
-    .football .desktopViewColumn3 { 
-        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/football/desktop.jpg); }
-    .footballWomen .desktopViewColumn3 { 
-        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/footballWomen/desktop.jpg); }
-    .cricket .desktopViewColumn3 { 
-        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/cricket/desktop.jpg); }
-    .rugby .desktopViewColumn3 { 
-        background-image: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/events/rugby/desktop.jpg); }
-    .mainOffer .desktopViewColumn3 { 
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 135px !important; }
-    .desktopViewColumn1, .desktopViewColumn3 { 
-        width: 230px !important; }
-    .desktopViewColumn2 { 
-        width: 10px !important; }
-    .CTA { 
-        max-width: 100px; }
-    .mainOffer .calendar { 
-        direction: rtl; }
-    .calendarTeams { 
-        margin: 6px 0; }
-    .desktopView { 
-        display: table-cell !important; }
-    .desktopView img { display: none !important; }
-    .desktop { 
-        display: block !important; 
-        display: initial !important; }
-    .mobile { 
-        display: none; }
-    .CTA * { 
-        font-size: 25px !important; }
-    /* desktop footer */
-    .footer tr {
-        width: 24% !important;
-        display: inline-block !important; }
-    .footer a {
-        width: 95%;
-        border-bottom: 0; }
-    .footer td {
-        border-right: 1px dashed gray;
-        border-bottom: 0 !important; }
-    /* desktop footer - end */
+  .mobile { display: none !important; }
+  .desktop { display: block !important; }
+  .offer1 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2019/11/ChampionsLeague10plus1/email/150X150.png); }
+  .offer2 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2019/11/EuropaLeagueWagerUp/email/150X150.jpg); }
+  .offer3 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2019/11/PremierLeague/email/150X150.jpg); }
+  .offer4 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2019/11/LiverpoolVsManchester/email/150X150.jpg); }
+  .offer5 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2019/11/Trio/email/150X150.png); }
+  .offer6 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2019/11/Trio/email/150X150.png); }
+  .offer .column1 tr, .offer .column1 tr a { max-width: 150px; height: 150px; display: block; }
+  .offer { text-align: left; }
+  .offer.offer1, .offer.offer3, .offer.offer5 { direction: rtl; }
+  .offer .column { display: table-cell !important; }
+  .offer .column2 { width: 65% !important; text-align: center; }
+  .offer .column1 { width: 35% !important; }
+  .CTA { font-size: 22px !important; }
+  /* desktop footer */
+  .footer tr {
+    width: 24% !important;
+    display: inline-block !important; }
+  .footer a {
+    width: 95%;
+    border-bottom: 0; }
+  .footer td {
+    border-right: 1px dashed gray;
+    border-bottom: 0 !important; }
+  /* footer (EN) */
+  .footer .c1 {
+    width: calc(25% - 45px - 2px) !important; }
+  .footer .c2 {
+    width: calc(25% - 15px - 2px) !important; }
+  .footer .c3 {
+    width: calc(25% + 40px - 2px) !important; }
+  .footer .c4 {
+    width: calc(25% + 5px - 2px) !important; }
+  /* footer (EN) - end */
+  /* desktop footer - end */
 }
+@media screen and (min-width: 1000px) {
+  .externalBackground, body { 
+    background: url(https://data.progressplay.net/content/promotions/allPromotions/sport/newsletter/email/bg/footballRugbyCricketBasketball.png);
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed; }
+}
+/* optional pulsing CTA */
+.pulse {
+  animation-name: pulse_animation;
+  -webkit-animation-name: pulse_animation;
+  
+  animation-duration: 4000ms;
+  -webkit-animation-duration: 4000ms;
+
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+}
+@keyframes pulse_animation {
+  0% { transform: scale(1); }
+  12.5% { transform: scale(1.02); }
+  25% { transform: scale(1.05); }
+  37.5% { transform: scale(1.02); }
+  50% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+.pulse1 { animation-delay: 1000ms; }
+.pulse2 { animation-delay: 2000ms; }
+.pulse3 { animation-delay: 3000ms; }
+/* optional pulsing CTA - end */
 /*  Desktop  - end  */
+
+/* ---- slider ---- */
+.sliderWrapper {
+  width: 100%;
+  overflow: hidden;
+  display: block; }
+.slider {
+  position: relative;
+  width: 600%;
+  width: calc(100% * 6);
+  display: block; }
+.slider .slide { 
+  position: absolute; }
+.flexbox {
+  display: flex !important;
+  flex-flow: row wrap;
+  justify-content: space-around; }
+.navigator { 
+  display: block !important; }
+.navigator .slide { 
+  width: 100px;
+  padding: 10px !important; }
+.navigator .slide img { 
+  width: calc(100% - 2px) !important; 
+  max-width: 65px; 
+  margin: 0 auto; 
+  border: 2px solid white; 
+  border-radius: 50%; }
+.navigator .slide input:checked ~ label img { 
+  border-color: red; }
+/* ---- slider ---- */
+summary:hover, .slide img:hover, .CTA:hover { cursor: pointer; }

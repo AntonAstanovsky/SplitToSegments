@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge" /><!--<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>2020 Kick-Starter</title>
+<style type="text/css">
+* {
+  word-wrap: break-word;
+  word-break: break-word;
+  font-family: Arial; }
+body { 
+  margin: 0; }
+td, body { 
+  padding: 0;
+  display: block; }
+img, tr, td, p { 
+  width: 100%;
+  display: block; }
+table, tbody, tr {
+  border-collapse: collapse !important; }
+
+/* hide 'view in browser' */
+p[class=viewInBrowser]:not(a) {
+  display: none; }
+@media screen and (max-width: 550px) {
+  p[class=viewInBrowserDesktop]:not(a) {
+    display: none; }
+}
+/* hide 'view in browser' - end */
+
+/*  Desktop  */
+@media screen and (min-width: 550px) {
+  .mobile { display: none !important; }
+  .desktop { display: block !important; }
+  .offer1 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer1/desktop.png); }
+  .offer2 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer2/desktop.png); }
+  .offer3 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer3/desktop.png); }
+  .offer4 .column1 tr { background: url(https://data.progressplay.net/content/promotions/allPromotions/monthly/email/desktop.gif); }
+  .offer .column1 tr, .offer .column1 tr a { max-width: 150px; height: 150px; display: block; }
+  .offer { text-align: left; }
+  .offer.offer1, .offer.offer3 { direction: rtl; }
+  .offer .column { display: table-cell !important; }
+  .offer .column2 { width: 65% !important; text-align: center; }
+  .offer .column1 { width: 35% !important; }
+  .CTA { font-size: 25px !important; }
+  /* desktop footer */
+  .footer tr {
+    width: 24% !important;
+    display: inline-block !important; }
+  .footer a {
+    width: 95%;
+    border-bottom: 0; }
+  .footer td {
+    border-right: 1px dashed gray;
+    border-bottom: 0 !important; }
+  /* footer (EN) */
+  .footer .c1, .footer .c3 {
+    width: 150px !important; }
+  .footer .c2, .footer .c4 {
+    width: 100px !important; }
+  /* footer (EN) - end */
+  /* desktop footer - end */
+  .externalBackground { 
+    background-color: lightgray !important; }
+}
+/*  Desktop  */
+
+summary span { text-decoration: underline; }
+
+/* optional pulsing CTA */
+.pulse {
+  animation-name: pulse_animation;
+  -webkit-animation-name: pulse_animation;
+  
+  animation-duration: 4000ms;
+  -webkit-animation-duration: 4000ms;
+
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-timing-function: linear;
+  -webkit-animation-timing-function: linear;
+}
+@keyframes pulse_animation {
+  0% { transform: scale(1); }
+  12.5% { transform: scale(1.02); }
+  25% { transform: scale(1.05); }
+  37.5% { transform: scale(1.02); }
+  50% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+.pulse1 { animation-delay: 1000ms; }
+.pulse2 { animation-delay: 2000ms; }
+.pulse3 { animation-delay: 3000ms; }
+/* optional pulsing CTA - end */
+
+/* ---- slider ---- */
+.sliderWrapper {
+  width: 100%;
+  overflow: hidden;
+  display: block; }
+.flexbox {
+  display: flex !important;
+  flex-flow: row wrap;
+  justify-content: space-around; }
+.slider {
+  position: relative;
+  width: 400%;
+  display: block; }
+.opacitySlider { 
+  animation-name: opacitySlider;
+  animation-duration: 2s; }
+.slider .slide { 
+  position: absolute; }
+.navigator { 
+  max-width: 360px;
+  display: table !important; }
+.navigator .slide { 
+  display: table-cell !important; 
+  width: 20%;
+  padding: 10px 5px !important; }
+.navigator .slide img { 
+  width: calc(100% - 4px) !important; 
+  max-width: 65px; 
+  margin: 0 auto; 
+  border: 2px solid white; 
+  border-radius: 50%; }
+.navigator .slide input:checked ~ label img { 
+  border-color: red; }
+/* ---- slider ---- */
+
+summary:hover, .slide img:hover, .CTA:hover { cursor: pointer; }
+
+</style>
+<script type="text/javascript">
+  class sliderClass {
+    constructor(sliderDomElement,slideClassName,navigatorElement) {
+      /*const*/
+      this.slideWidth = 100;
+      this.direction = {
+        right: "+",
+        left: "-",
+      }
+
+      this.sliderElement = sliderDomElement;
+      this.slideClassName = slideClassName;
+      this.slideNavigator = Array.from(navigatorElement.querySelectorAll('[data-slide]'));
+
+      this.lastClickedTime = new Date().getTime();
+      this.slideNumber = 1;
+      this.left = 0;
+      this.sliderElementsMaxHeight = 0;
+      this.sliderElements = null;
+      this.numberOfSlides = 0;
+      this.setDimensions();
+      this.autoSlide = null;
+
+      this.initialize();
+    }
+    initialize() {
+      this.slideNavigator[this.slideNumber - 1].click();
+      this.slideNavigator.forEach((item) => { 
+        item.addEventListener('click', (e) => { 
+          this.lastClickedTime = new Date().getTime();
+          this.goToSlide.apply(this,[parseInt(e.target.parentElement.getAttribute('data-slide'))]) 
+        }); 
+      });
+      this.autoSlide = this.setAutoSlide(5);
+    }
+    setAutoSlide(secInterval) {
+      return setInterval(() => { 
+        if ((new Date().getTime() - this.lastClickedTime) > secInterval * 1000) {
+          this.slideRight();
+          this.slideNavigator[this.slideNumber - 1].getElementsByTagName('img')[0].click();
+        }
+      }, secInterval * 1000);
+    }
+    stopAutoSlide() {
+      clearInterval(this.autoSlide);
+    }
+    setDimensions() {
+      this.sliderElementsMaxHeight = 0;
+      this.sliderElements = Array.from(this.sliderElement.getElementsByClassName(this.slideClassName));
+      this.numberOfSlides = this.sliderElements.length;
+      this.sliderElement.style.width = (this.slideWidth * this.numberOfSlides) + '%';
+      this.sliderElements.forEach((element,index) => { 
+        element.style.width = this.slideWidth / this.numberOfSlides + '%';
+        element.style.left = (index * this.slideWidth / this.numberOfSlides) + '%';
+        if (element.offsetHeight > this.sliderElementsMaxHeight) { 
+          this.sliderElementsMaxHeight = element.offsetHeight; 
+        } 
+      });
+      this.sliderElement.style.height = this.sliderElementsMaxHeight + 'px';
+    }
+    slide(direction) {
+      if(direction == this.direction.right) {
+        this.left -= this.slideWidth;
+        this.slideNumber++;
+        if(this.slideNumber > this.numberOfSlides) {
+          this.slideNumber = 1;
+          this.left = 0;
+        }
+      }
+      else if(direction == this.direction.left) {
+        this.left += this.slideWidth;
+        this.slideNumber--;
+        if(this.slideNumber < 1) { 
+          this.slideNumber = this.numberOfSlides; 
+          this.left = this.slideWidth - this.numberOfSlides * this.slideWidth;
+        }
+      }
+      this.sliderElement.style.left = this.left + '%';
+    }
+    slideRight() {
+      this.slide(this.direction.right);
+    }
+    slideLeft() {
+      this.slide(this.direction.left);
+    }
+    goToSlide(number) {
+      let attempt = 0;
+      while(this.slideNumber != number) {
+        this.slideRight();
+        attempt++;
+        if(attempt > this.numberOfSlides) { console.log(`'goToSlide' function has too many attempts!`); break; }
+      }
+    }
+  }
+</script>
+</head>
+<body><!--[if gte mso 9]><center><table style="width: 550px;"><tr><td><![endif]-->
+<div class="externalBackground" style="width: 100%; display: block;">
+<table align="center" style="margin: 0 auto; max-width: 550px; border-collapse: collapse; background-color: black; padding: 0; width: 100%; display: block;">
+  <tbody style="display: block;">
+    <tr>
+      <td style="display: block; padding: 0;">
+      <table class="externalBackground scriptHide" style="display: block; background-color: white; border-collapse: collapse; width: 100%;">
+        <tbody style="display: block;">
+          <tr>
+            <td style="display: block; width: 100%; text-align: right;">
+            <p style="font-size: 0; margin: 0; display: none;">Dear *|FirstName|*, Start spinning and wining this January with some impressive 2020 Kick-Starter deals. Take advantage of these amazing offers, not once, not twice, but THREE TIMES each:</p>
+            <p class="viewInBrowser" style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+            <p class="viewInBrowser" style="margin: 0; line-height: 12px; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">
+              <a href="*|ARCHIVE|*" name="ClickToViewHtml" style="text-decoration: none;" target="_blank">
+                <span style="color: black; margin-right: 5px;">View in Browser</span></a></p>
+
+            <p class="viewInBrowserDesktop" style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+   <table align="center" class="header" style="clear: both; display: table; width: 100%;">
+    <tbody>
+     <tr style="display: table; width: 100%;">
+      <td style="width: 20%; display: table-cell;" valign="middle">&nbsp;</td>
+      <td style="width: 60%; display: table-cell;" valign="middle">
+        <center>
+          <a href="*|WhiteLabelUrlPlay|*" name="play" style="color: #00BFF5; display: block;" target="_blank">
+            <img alt="*|WhiteLabelName|*" src="https://data.progressplay.net/img/wl-logo/*|WhiteLabelID|*.png" style="line-height: 25px; font-size: 12px; margin: 0 auto; width: 90%; max-width: 200px; max-height: 100px; text-align: center; word-wrap: break-word; word-break: break-word; font-family: Arial;" /> 
+          </a>
+        </center>
+      </td>
+      <td style="width: 20%; display: table-cell;" valign="top">&nbsp;</td>
+     </tr>
+    </tbody>
+   </table>
+
+      <table align="center" style="width: 100%; border-collapse: collapse;">
+        <tbody>
+          <tr>
+            <td align="center" style="display: block; padding: 0;"><a class="CTA" href="*|WhiteLabelUrlPlay|*" name="play" style="display: block;" target="_blank"><img src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/top/en.jpg" style="width: 100%; font-size: 20px; color: white; font-weight: bolder; -webkit-text-fill-color: white; line-height: 45px; background-color: dimgray; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" title="2020 Kick-Starter" alt="2020 Kick-Starter" /> </a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table align="center" style="width: 85%; width: 85% !important; margin: 0 auto;">
+        <tbody>
+          <tr>
+            <td style="display: block; padding: 0;">
+            <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+
+            <p style="color: white; font-size: 20px; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Dear *|FirstName|*,<br />
+            <br />
+Start spinning and wining this January with some impressive 2020 Kick-Starter deals. <br /><br />
+
+Take advantage of these amazing offers, not once, not twice, but THREE TIMES each:</p>
+
+            <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+
+            <div id="sliderWrapper" style="display: block; width: 100%;">
+            <div id="slider">
+            <!-- Offer -->
+            <div class="slide slide1">
+            <table class="offer offer4" align="center" style="width: 100%; margin: 0 auto;">
+              <tbody>
+                <tr class="column column1">
+
+                  <td style="display: block; padding: 0;">
+                    <table align="center" style="width: 100%; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="display: block; padding: 0;"><a href="*|WhiteLabelUrlDeposit|*" target="_blank"><img class="CTA mobile" src="https://data.progressplay.net/content/promotions/allPromotions/monthly/email/mobile.jpg" style="width: 100%; font-size: 25px; color: white; font-weight: bolder; -webkit-text-fill-color: white; line-height: 45px; background-color: dimgray; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" width="450" title="JAN20" alt="JAN20" /></a> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+
+                </tr>
+                <tr class="column column2">
+                <td style="display: block; padding: 0;">
+                <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+                <p style="color: white; font-size: 20px; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial; direction: ltr;"><strong style="color: #39A5FF;">25%</strong> bonus up to a maximum of <strong style="color: #39A5FF;">&pound;/$/&euro;500</strong> by using deposit code: <strong style="color: #39A5FF;">JAN20</strong>.</p>
+
+                <table style="width: 100%; direction: ltr;">
+                  <tbody>
+                    <tr>
+                      <td style="display: block; padding: 0;">
+                      <center>  
+                      <table style="width: 85%; width: 85% !important; text-align: center; margin: 0 auto;">
+                        <tbody>
+                          <tr>
+                            <td style="display: block; padding: 0;">
+                            <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+                            <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="*|WhiteLabelUrlDeposit|*" style="height: 50px; v-text-anchor: middle; width: 250px;" arcsize="10%" fill="t"><v:fill type="solid" color="#D3D3D3" /><w:anchorlock/><center><![endif]-->
+                            <a class="CTA pulse pulse1" href="*|WhiteLabelUrlDeposit|*" name="Deposit" style="margin: auto; width: 100%; max-width: 250px; font-size: 22px; color: black; font-weight: 800; text-decoration: none; text-align: center; display: block; background-color: #D3D3D3; background: linear-gradient(to bottom,white,gray); border-radius: 5px; font-family: Arial; line-height: 50px; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">
+                              <!--[if mso]><span style="font-size: 24px;"><![endif]-->
+                                DEPOSIT NOW
+                              <!--[if mso]></span><![endif]-->  
+                            </a> 
+                            <!--[if mso]></center></v:roundrect><![endif]-->
+
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </center>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+            <p style="color: white; font-size: 12px; margin: 0; line-height: 16px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;20. <a href="*|WhiteLabelUrlPlay|*#/casino-promotions/monthly" name="promoPage" style="color: #39A5FF;" target="_blank">Full Terms apply</a>.</p>
+            <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+          
+        </div>
+      <!-- Offer - end -->
+
+            <!-- Offer -->
+            <div class="slide slide2">
+            <table class="offer offer1" align="center" style="width: 100%; margin: 0 auto;">
+              <tbody>
+                <tr class="column column1">
+
+                  <td style="display: block; padding: 0;">
+                    <table align="center" style="width: 100%; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="display: block; padding: 0;"><a href="*|WhiteLabelUrlDeposit|*" target="_blank"><img class="CTA mobile" src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer1/mobile.jpg" style="width: 100%; font-size: 25px; color: white; font-weight: bolder; -webkit-text-fill-color: white; line-height: 45px; background-color: dimgray; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" width="450" title="FS15" alt="FS15" /></a> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr class="column column2">
+              <td style="display: block; padding: 0;">
+              <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+              <p style="color: white; font-size: 20px; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial; direction: ltr;"><strong style="color: #39A5FF;">15 free spins</strong> on <strong style="color: #39A5FF;">Warlords: Crystals of Power</strong> by using deposit code: <strong style="color: #39A5FF;">FS15</strong>.</p>
+
+              <table style="width: 100%; direction: ltr;">
+                <tbody>
+                  <tr>
+                    <td style="display: block; padding: 0;">
+
+                    <center>  
+                    <table style="width: 85%; width: 85% !important; text-align: center; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td style="display: block; padding: 0;">
+                          <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+                          <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="*|WhiteLabelUrlDeposit|*" style="height: 50px; v-text-anchor: middle; width: 250px;" arcsize="10%" fill="t"><v:fill type="solid" color="#D3D3D3" /><w:anchorlock/><center><![endif]-->
+                            <a class="CTA pulse pulse2" href="*|WhiteLabelUrlDeposit|*" name="Deposit" style="margin: auto; width: 100%; max-width: 250px; font-size: 22px; color: black; font-weight: 800; text-decoration: none; text-align: center; display: block; background-color: #D3D3D3; background: linear-gradient(to bottom,white,gray); border-radius: 5px; font-family: Arial; line-height: 50px; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">
+                              <!--[if mso]><span style="font-size: 24px;"><![endif]-->
+                                DEPOSIT NOW
+                              <!--[if mso]></span><![endif]-->  
+                            </a> 
+                            <!--[if mso]></center></v:roundrect><![endif]-->
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </center>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+      <p style="color: white; font-size: 12px; margin: 0; line-height: 16px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;10. <a href="*|WhiteLabelUrlPlay|*#/casino-promotions/monthly" name="promoPage" style="color: #39A5FF;" target="_blank">Full Terms apply</a>.</p>
+      <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+
+    </div>
+    <!-- Offer - end -->
+
+      <!-- Offer -->
+            <div class="slide slide3">
+            <table class="offer offer2" align="center" style="width: 100%; margin: 0 auto;">
+              <tbody>
+                <tr class="column column1">
+
+                  <td style="display: block; padding: 0;">
+                    <table align="center" style="width: 100%; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="display: block; padding: 0;"><a href="*|WhiteLabelUrlDeposit|*" target="_blank"><img class="CTA mobile" src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer2/mobile.jpg" style="width: 100%; font-size: 25px; color: white; font-weight: bolder; -webkit-text-fill-color: white; line-height: 45px; background-color: dimgray; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" width="450" title="FS30" alt="FS30" /></a> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr class="column column2">
+              <td style="display: block; padding: 0;">
+              <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+              <p style="color: white; font-size: 20px; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial; direction: ltr;"><strong style="color: #39A5FF;">30 free spins</strong> on <strong style="color: #39A5FF;">Viking Runecraft</strong> by using deposit code: <strong style="color: #39A5FF;">FS30</strong>.</p>
+
+              <table style="width: 100%; direction: ltr;">
+                <tbody>
+                  <tr>
+                    <td style="display: block; padding: 0;">
+
+                    <center>  
+                    <table style="width: 85%; width: 85% !important; text-align: center; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td style="display: block; padding: 0;">
+                          <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+                          <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="*|WhiteLabelUrlDeposit|*" style="height: 50px; v-text-anchor: middle; width: 250px;" arcsize="10%" fill="t"><v:fill type="solid" color="#D3D3D3" /><w:anchorlock/><center><![endif]-->
+                            <a class="CTA pulse pulse3" href="*|WhiteLabelUrlDeposit|*" name="Deposit" style="margin: auto; width: 100%; max-width: 250px; font-size: 22px; color: black; font-weight: 800; text-decoration: none; text-align: center; display: block; background-color: #D3D3D3; background: linear-gradient(to bottom,white,gray); border-radius: 5px; font-family: Arial; line-height: 50px; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">
+                              <!--[if mso]><span style="font-size: 24px;"><![endif]-->
+                                DEPOSIT NOW
+                              <!--[if mso]></span><![endif]-->  
+                            </a> 
+                            <!--[if mso]></center></v:roundrect><![endif]-->
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </center>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+      <p style="color: white; font-size: 12px; margin: 0; line-height: 16px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;20. <a href="*|WhiteLabelUrlPlay|*#/casino-promotions/monthly" name="promoPage" style="color: #39A5FF;" target="_blank">Full Terms apply</a>.</p>
+      <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+    </div>
+      <!-- Offer - end -->
+
+      <!-- Offer -->
+            <div class="slide slide4">
+            <table class="offer offer3" align="center" style="width: 100%; margin: 0 auto;">
+              <tbody>
+                <tr class="column column1">
+
+                  <td style="display: block; padding: 0;">
+                    <table align="center" style="width: 100%; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td align="center" style="display: block; padding: 0;"><a href="*|WhiteLabelUrlDeposit|*" target="_blank"><img class="CTA mobile" src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer3/mobile.jpg" style="width: 100%; font-size: 25px; color: white; font-weight: bolder; -webkit-text-fill-color: white; line-height: 45px; background-color: dimgray; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" width="450" title="FS75" alt="FS75" /></a> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr class="column column2">
+              <td style="display: block; padding: 0;">
+              <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+              <p style="color: white; font-size: 20px; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial; direction: ltr;"><strong style="color: #39A5FF;">75 free spins</strong> on <strong style="color: #39A5FF;">Moon Princess</strong> by using deposit code: <strong style="color: #39A5FF;">FS75</strong>.</p>
+
+              <table style="width: 100%; direction: ltr;">
+                <tbody>
+                  <tr>
+                    <td style="display: block; padding: 0;">
+
+                    <center>  
+                    <table style="width: 85%; width: 85% !important; text-align: center; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td style="display: block; padding: 0;">
+                          <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+                          <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="*|WhiteLabelUrlDeposit|*" style="height: 50px; v-text-anchor: middle; width: 250px;" arcsize="10%" fill="t"><v:fill type="solid" color="#D3D3D3" /><w:anchorlock/><center><![endif]-->
+                            <a class="CTA pulse pulse1" href="*|WhiteLabelUrlDeposit|*" name="Deposit" style="margin: auto; width: 100%; max-width: 250px; font-size: 22px; color: black; font-weight: 800; text-decoration: none; text-align: center; display: block; background-color: #D3D3D3; background: linear-gradient(to bottom,white,gray); border-radius: 5px; font-family: Arial; line-height: 50px; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">
+                              <!--[if mso]><span style="font-size: 24px;"><![endif]-->
+                                DEPOSIT NOW
+                              <!--[if mso]></span><![endif]-->  
+                            </a> 
+                            <!--[if mso]></center></v:roundrect><![endif]-->
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </center>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+      <p style="color: white; font-size: 12px; margin: 0; line-height: 16px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;50. <a href="*|WhiteLabelUrlPlay|*#/casino-promotions/monthly" name="promoPage" style="color: #39A5FF;" target="_blank">Full Terms apply</a>.</p>
+      <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+    </div>
+    <!-- Offer - end -->
+    </div>
+  </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+  <table id="navigator" width="0" align="center" style="width: 85%; width: 85% !important; margin: 0 auto; display: none;">
+    <!--[if mso]><v:rect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" fillcolor="red" style="width: 100%; height: 0px; visibility: hidden; display: block; v-text-anchor: middle;"><![endif]-->
+        <tbody>
+          <tr>
+            <td style="display: block; padding: 0;">
+              <form action="#">
+                <table align="center" style="width: 100%; margin: 0 auto;">
+                  <tbody>
+                    <tr class="flexbox" style="display: table;">
+                      <td class="slide slide1">
+                        <input style="display: none;" type="radio" name="offer" id="match" value="match">
+                        <label for="match" data-slide="1"><img class="CTA" src="https://data.progressplay.net/content/promotions/allPromotions/monthly/email/desktop.gif"></label>
+                      </td>
+                      <td class="slide slide2">
+                        <input style="display: none;" type="radio" name="offer" id="15FS" value="15FS">
+                        <label for="15FS" data-slide="2"><img class="CTA" src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer1/desktop.png"></label>
+                      </td>
+                      <td class="slide slide3">
+                        <input style="display: none;" type="radio" name="offer" id="30FS" value="30FS">
+                        <label for="30FS" data-slide="3"><img class="CTA" src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer2/desktop.png"></label>
+                      </td>
+                      <td class="slide slide4">
+                        <input style="display: none;" type="radio" name="offer" id="75FS" value="75FS">
+                        <label for="75FS" data-slide="4"><img class="CTA" src="https://data.progressplay.net/content/promotions/allPromotions/byMonth/2020/1/monthly/email/offer3/desktop.png"></label>
+                      </td>
+                    </tr></tbody></table>
+              </form>
+            <p style="margin: 0; padding: 0;">&nbsp;</p>
+            </td>
+          </tr>
+        </tbody><!--[if mso]></v:rect><![endif]-->
+      </table>
+
+      <table align="center" style="width: 85%; width: 85% !important; margin: 0 auto;">
+        <tbody>
+          <tr>
+            <td style="display: block; padding: 0;">
+            <p style="color: white; font-size: 20px; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial;">That’s right, you can enjoy up to 360 Free Spins and up to £/$/€1,500 in bonuses, right now! <br/><br/>
+              Lydia Kenneally<br />
+            <a href="*|WhiteLabelUrlPlay|*" name="play" style="color: #39A5FF;" target="_blank">*|WhiteLabelName|*</a> Team</p>
+
+            <p style="margin: 0; padding: 0;">&nbsp;</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="footerContainer" style="width: 100%; background-color: rgb(63, 63, 63);">
+        <tbody>
+          <tr>
+            <td style="display: block; padding: 0;">
+            <center>
+            <table align="center" class="footer" style="width: 100%; text-align: center; margin: 0 auto;">
+              <tbody>
+                <tr class="c1">
+                  <td style="border-bottom: 1px dashed gray; padding-bottom: 10px; padding-top: 10px; display: block;">
+                  <center><a href="*|WhiteLabelUrlResponsible|*" name="play" style="text-decoration: none; color: gray; font-size: 12px; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">Play Responsibly</a></center>
+                  </td>
+                </tr>
+                <tr class="c2">
+                  <td style="border-bottom: 1px dashed gray; padding-bottom: 10px; padding-top: 10px; display: block;">
+                  <center><a href="*|WhiteLabelUrlContact|*" name="contact" style="text-decoration: none; color: gray; font-size: 12px; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">Contact Us</a></center>
+                  </td>
+                </tr>
+                <tr class="c3">
+                  <td style="border-bottom: 1px dashed gray; padding-bottom: 10px; padding-top: 10px; display: block;">
+                  <center><a href="*|WhiteLabelUrlBonusPolicy|*" name="terms" style="text-decoration: none; color: gray; font-size: 12px; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">Terms and Conditions</a></center>
+                  </td>
+                </tr>
+                <tr class="c4">
+                  <td style="padding-bottom: 10px; padding-top: 10px; border: 0 !important; display: block;">
+                  <center><a href="*|WhiteLabelUrlPrivacyPolicy|*" name="privacy" style="text-decoration: none; color: gray; border: 0; font-size: 12px; display: block; word-wrap: break-word; word-break: break-word; font-family: Arial;" target="_blank">Privacy Policy</a></center>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table align="center" style="width: 100%; background-color: black; display: block;">
+        <tbody style="display: block;">
+          <tr>
+            <td style="display: block; padding: 0;">
+            <table align="center" style="width: 96%; width: 96% !important; margin: 0 auto; display: block;">
+              <tbody style="display: block;">
+                <tr>
+                  <td style="display: block; padding: 0;">
+                  <p style="margin: 0; padding: 0; line-height: 20px;">&nbsp;</p>
+
+                  <p style="font-size: 20px; color: gray; margin: 0; line-height: 25px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Important: Before you close this mail and start playing, please add our email address <a href="mailto:*|WhiteLabelReplyAddress|*@promo.progressplay.com" name="replayEmail" style="color: #39A5FF; text-decoration: none !important;"><span style="color: #39A5FF !important;">*|WhiteLabelReplyAddress|*@promo.progressplay.com</span></a> to your contacts list, to ensure our emails reach you.</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table align="center" class="tnc" style="width: 96%; width: 96% !important; margin: 0 auto;">
+              <tbody>
+                <tr>
+                  <td id="tnc" style="display: block; padding: 0;">
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+
+                  <p id="tncSummary" style="font-size: 16px; color: gray; margin: 0; word-wrap: break-word; word-break: break-word; font-family: Arial;">Terms &amp; Conditions:</p>
+
+                  <ol style="margin: 0 0 0 30px; padding: 0;">
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">The offer is valid from January 1st&nbsp;to January 31st, 2020, 23:59 GMT / 16:59 PST / 09:59 (February 1st, 2020) AEST.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;10 to get <strong>15 free spins</strong> on <strong>Warlords: Crystals of Power</strong> by using deposit code: <strong>FS15</strong>.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;20 to get <strong>30 free spins</strong> on <strong>Viking Runecraft</strong> by using deposit code: <strong>FS30</strong>.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;50 to get <strong>75 free spins</strong> on <strong>Moon Princess</strong> by using deposit code: <strong>FS75</strong>.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Players must make a minimum deposit of &pound;/$/&euro;20 to get the <strong>25%</strong> bonus up to a maximum of <strong>&pound;/$/&euro;500</strong> by using deposit code: <strong>JAN20</strong>.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Each bonus can be claimed a maximum of 3 times during the promotional period.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Bonus must be wagered 50 times before a withdrawal may be made. Wagering contributions apply and vary from game to game.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Any bonus and winnings will expire 2&nbsp;days after being credited from the date and time it is credited to a player&#39;s account. Players who have not used their bonus and winnings generated from the bonus or if the Wagering Requirement has not been met within the stipulated time limits shall not be able to receive the expired bonus and/or winnings generated from the bonus thereafter.</li>
+                  </ol>
+
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+
+                  <p style="font-size: 12px; color: gray; margin: 0; word-wrap: break-word; word-break: break-word; font-family: Arial;">Match Deposit Offer:</p>
+
+                  <ol style="margin: 0 0 0 30px; padding: 0;">
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Once the amount you have wagered meets or exceeds the Wagering Requirement, the Promotion will end and your Bonus Funds will automatically transfer to your Real Money Balance (up to the Maximum Conversion Amount of 3&nbsp;time the original bonus amount credited to your account) from where you will be able to withdraw them as cash or continue to use them in non-Promotion play.</li>
+                  </ol>
+
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+
+                  <p style="font-size: 12px; color: gray; margin: 0; word-wrap: break-word; word-break: break-word; font-family: Arial;">Free Spins Offer:</p>
+
+                  <ol style="margin: 0 0 0 30px; padding: 0;">
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">Once the amount you have wagered meets or exceeds the Wagering Requirement, the Promotion will end and your Bonus Funds will automatically transfer to your Real Money Balance (up to the Maximum Conversion Amount of &pound;/$/&euro;50) from where you will be able to withdraw them as cash or continue to use them in non-Promotion play.</li>
+                  </ol>
+
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+
+                  <p style="font-size: 12px; color: gray; margin: 0; word-wrap: break-word; word-break: break-word; font-family: Arial;">General Terms &amp; Conditions:</p>
+
+                  <ol style="margin: 0 0 0 30px; padding: 0;">
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">The promotion is not available to customers depositing with Skrill payment method.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">All active bonuses or pending bonuses and promotional offers, and any winnings generated through the wagering of either of the aforementioned, will be cancelled upon withdrawal request if any of the applicable conditions have not been met in full prior to withdrawal request being submitted.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">You cannot withdraw any Bonus Funds from your Bonus Balance. Once the wagering requirement has been fully met, the Bonus amount and the Bonus Winnings will be converted to the Real Balance. Any funds on the Real Balance can be cashed out at any time.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">*|WhiteLabelName|* reserves the right to alter this chapter, cancel, modify or suspend any offer and any promotion at any time and without prior notice &ndash; in respect of any Bonus that has yet to be provided to You. Nothing in this section limits any other right and/or remedy granted to Us.</li>
+                    <li style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;">The Promotion is subject to <a href="*|WhiteLabelUrlBonusPolicy|*" name="bonusPolicy" style="text-decoration: none; color: #00BFF5;" target="_blank">*|WhiteLabelName|*&rsquo;s Terms and Conditions</a>.</li>
+                  </ol>
+
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table align="center" style="background-color: white; margin: 0; padding: 0; width: 100%;">
+        <tbody>
+          <tr>
+            <td align="center" style="display: block; padding: 0;"><a href="*|WhiteLabelUrlPlay|*" name="footer" target="_blank"><img src="https://data.progressplay.net/img/footer/emailfooter/white_v1.jpg" style="width: 100%; display: block;" /> </a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table align="center" class="lasttable" style="background-color: white; margin: 0; padding: 0; width: 100%;">
+        <tbody>
+          <tr>
+            <td style="display: block; padding: 0;">
+            <center>
+            <table align="center" style="width: 90%; margin: 0 auto;">
+              <tbody>
+                <tr>
+                  <td style="display: block; padding: 0;">
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+
+                  <p style="color: gray; font-size: 12px; text-align: justify; word-wrap: break-word; word-break: break-word; font-family: Arial;">NOTE: The information in this email and any attached file/s are confidential and intended solely for the use of the individual or entity to whom they are addressed. If you are not the intended recipient please notify the sender immediately using the sender email address and delete this email.<br />
+                  <br />
+                  You should not read or copy this email, use it for any purpose, disseminate it or disclose its contents to any other person. Note that any possible personal views or opinions presented in this e-mail are solely those of the author and do not necessarily represent those of the company, unless explicitly stated otherwise. Consequently, no liability is expected in respect of any such views of opinions. Although every reasonable precaution has been taken to ensure no viruses are present in this email, we cannot accept responsibility for any loss or damage arising from the use of this email or attachments.<br />
+                  <br />
+                  Moreover, communication via email over the internet is not secure and messages may be read, manipulated or otherwise compromised by unknown third parties. We do not accept any responsibility for the correctness and completeness of the transfer of information contained in such communication nor for any delay of receipt.</p>
+
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center; display: block; padding: 0;">
+                  <p style="color: gray; font-size: 12px; word-wrap: break-word; word-break: break-word; font-family: Arial;"><a href="*|UNSUB|*" name="unsubscribe" style="color: #00BFF5;"><span style="color: #00BFF5;">Click here to unsubscribe</span></a></p>
+
+                  <p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </center>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p style="margin: 0; padding: 0; line-height: 12px;">&nbsp;</p>
+</div>
+<!--[if gte mso 9]></td></tr></table></center><![endif]--></body>
+<script type="text/javascript">
+  console.log("window yet to be loaded.");
+
+  window.onload = function() {
+
+    addClass(document.getElementById("sliderWrapper"),"sliderWrapper");
+    addClass(document.getElementById("slider"),"slider");
+    addClass(document.getElementById("navigator"),"navigator");
+
+    let slider = new sliderClass(document.getElementById('slider'),'slide',document.getElementById('navigator'));
+    //slider.stopAutoSlide();
+
+    /* summary toggle */
+    // Internet Explorer 6-11
+    let isIE = /*@cc_on!@*/false || !!document.documentMode;
+    // Edge 20+
+    let isEdge = !isIE && !!window.StyleMedia;
+    if(!isIE && !isEdge) {
+      let titleElement = document.getElementById("tncSummary");
+      let title = titleElement.innerHTML;
+      let titleStyle = titleElement.getAttribute("style");
+      titleElement.remove();
+
+      let termContent = document.getElementById("tnc");
+      
+      document.getElementById("tnc").innerHTML = `<details><summary style="` + titleStyle + ` color: #39A5FF; padding: 10px; outline: none;"><span>` + title + `<span></summary>`+ termContent.innerHTML + `</details>`;
+      /* summary toggle */
+      let toggleElements = document.getElementsByTagName('summary');
+      toggleElements[0].addEventListener('click',toggle,false);
+      /* summary toggle */
+
+      /* ---- terms ---- */
+    }
+
+    window.onresize = function() { slider.setDimensions(); };
+  }
+
+  function addClass(element,className) { 
+    let currentClass = element.getAttribute('class');
+    if (currentClass == null) {
+       element.setAttribute('class',className);
+    } else if(!currentClass.includes(className)) {
+      element.setAttribute('class',currentClass + ' ' + className); 
+    }
+  }
+
+  function addEventListenersToArray (array,event,listenerFunction) {
+    for (let item of array) {
+      item.addEventListener(event, listenerFunction, false);
+    }
+  }
+
+  /* summary toggle */
+  function toggle(e) {
+    let classList = e.target.getAttribute('class') || '';
+    if (classList.includes('on')) {
+      e.target.setAttribute('class',classList.replace('on',''));
+    } else { e.target.setAttribute('class','on'); }
+  }
+  /* summary toggle */
+
+</script>
+
+</html>
