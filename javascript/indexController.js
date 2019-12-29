@@ -82,11 +82,9 @@ function AddClass(element,newClass) {
 }
 
 function hideContainer(event) {
-  let containerElements = document.getElementsByClassName('container');
-  for (let item of containerElements) {
-    if (item.contains(event.target)) {
-      setHide(item);
-    }
+  let containerElement = document.querySelector("[data-close='" + event.target.getAttribute('data-clickToClose') + "']");
+  if (containerElement.contains(event.target)) {
+    setHide(containerElement);
   }
 }
 

@@ -35,7 +35,7 @@
   <div class="body">
     <div id="HomePage" class="Page">
     <form enctype="multipart/form-data">
-      <div class="flexWrap">
+      <div class="flexWrap flexWrapCenter">
         <div class="container fileContainer operationClick">
           <p>Segmented Players List:</p>
           <label id="fileLabel" for="file" class="uploadFile CTA centered borderCTA grayCTA">Upload File</label>
@@ -69,10 +69,10 @@
             </ol><hr/>
           </details>
         </div>
-      </div>
-      <div id="download" class="container download hidden">
-        <label id="runFunctionLabel" for="runFunction" class="CTA centered borderCTA grayCTA">Download</label>
-        <input id="runFunction" type="button" value="Download">
+        <div id="download" class="container download hidden">
+          <label id="runFunctionLabel" for="runFunction" class="CTA centered borderCTA grayCTA">Download</label>
+          <input id="runFunction" type="button" value="Download">
+        </div>
       </div>
     </form>
 
@@ -80,7 +80,7 @@
   </div>
 
   <div id="MailersPage" class="Page hidden">
-    <div class="flexWrap" data-mailer="options">
+    <div class="flexWrap flexWrapCenter" data-mailer="options">
       <div class="container">
         <p>Choose Mailer Type:</p>
         <div class="dropdown" data-navigator="menu" data-mailer="type">
@@ -107,8 +107,8 @@
           <p id="previewMailerCTA" class="operationClick centered CTA borderCTA grayCTA">Show</p>
         </div>
       </div>
-      <iframe id="mailerDisplay" class="hidden"></iframe>
     </div>
+    <iframe id="mailerDisplay" class="hidden"></iframe>
   </div>
 
   </div>
@@ -117,14 +117,16 @@
     <p><span>&copy; Anton A.</span></p>
   </footer>
 
-<div class="modalBox hidden container centered">
-  <div class="test"></div>
-  <p class="title">&nbsp;</p>
-  <hr/>
-  <p class="content">&nbsp;</p>
-  <img class="image" src="">
-  <div>
-    <p class="close CTA centered borderCTA operationClose">OK</p>
+<div class="modalBox hidden" data-close="closeModalBox">
+  <div class="container centered">
+    <div class="test"></div>
+    <p class="title">&nbsp;</p>
+    <hr/>
+    <p class="content">&nbsp;</p>
+    <img class="image" src="">
+    <div>
+      <p class="close CTA centered borderCTA" data-clickToClose="closeModalBox">OK</p>
+    </div>
   </div>
 </div>
 

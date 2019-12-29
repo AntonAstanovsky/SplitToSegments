@@ -306,7 +306,7 @@ let xl2json = "", filterPlayers = "";
 document.getElementById('file').addEventListener('change', handleFileSelect, false);
 document.getElementById('filterFile').addEventListener('change', handleFilterFileSelect, false);
 document.getElementById('runFunction').addEventListener('click', handleFileManipulation, false);
-addEventListenersToArray(document.getElementsByClassName('operationClose'),'click',hideContainer);
+addEventListenersToArray(document.querySelectorAll("[data-clickToClose]"),'click',hideContainer);
 
 let pageMenu = new headerMenu(document.getElementById("headerMenu")); 
 
@@ -317,8 +317,4 @@ let mailerTemplate = new mailerEditor(document.querySelector("[data-navigator='m
 
 document.getElementById('previewMailerCTA').addEventListener('click', showPreviewMailer, false);
 
-let fileType;
-window.onload = function() {
-  fileType = new dropdownMenu(document.getElementById('outputType').querySelector("[data-navigator='menu']"),'Type','choose');
-}
 /* ----------- Mailer Template ----------- */

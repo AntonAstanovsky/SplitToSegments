@@ -1,4 +1,5 @@
 .material-icons { font-family: 'Material Icons' !important; }
+::-webkit-scrollbar { width: 0; }
 body { 
   margin: 0; 
   min-height: calc(100% - 140px); }
@@ -48,14 +49,32 @@ p:hover {
 .flexWrap { 
   display: flex;
   flex-wrap: wrap; }
+.flexWrapCenter { 
+  justify-content: center;
+  align-items: flex-start; }
 .fileContainer {
   display: inline-block; }
 .Page {
   padding: 0 15px; }
+.container:after, .container:before {
+  content: ' ';
+  position: absolute;
+  right: 5px;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, .5);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+.container:after {
+  top: 5px;
+}
+.container:before {
+  bottom: 5px;
+}
 .container {
+  border-top-left-radius: 45px;
+  position: relative;
   background-color: #E6E8E1;
-  background: radial-gradient(#E6E8E1 5%, #E6E8E1 90%, #C3AFA0 100%);
-  vertical-align: top;
   width: 90%;
   margin: 10px;
   max-width: 300px;
@@ -97,18 +116,19 @@ hr {
   margin: 30px 0; }
 
 /* -- Modal Box -- */
-.container.modalBox {
+.modalBox .container {
+  box-sizing: border-box;
   background: white; }
 .modalBox { 
-  color: black;
+  z-index: 1000;
+  background-color: rgba(0,0,0,0.5);
   text-align: center;
-  top: 20px;
-  left: 20px;
+  top: 0;
   position: fixed;
-  width: 70%;
-  max-width: 300px;
-  padding: 20px 20px 0 20px;
-  border: 10px solid; }
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  overflow: scroll; }
 .modalBox hr { 
   margin: 10px 0; }
 .modalBox .image {
@@ -146,6 +166,7 @@ hr {
 /* -- Menu - end -- */
 
 header { 
+  z-index: 500;
   top: 0; }
 .menu {
   vertical-align: top; 
@@ -209,6 +230,7 @@ header .menu .icon path {
 
 /* ---- Mailer Display ---- */
 #mailerDisplay { 
+  resize: both;
   background: white;
   display: block; 
   height: 600px;
