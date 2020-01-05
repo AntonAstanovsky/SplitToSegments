@@ -31,6 +31,17 @@ summary:focus {
   display: inline-block; }
 /* --------------   ToolTip  -------------- */
 
+#svgMenuIcon:checked ~ label path[data-menuIcon="upper"] {
+  transform: matrix(0.707, 0.707, -0.707, 0.707, 20, -20);
+}
+#svgMenuIcon:checked ~ label path[data-menuIcon="lower"] {
+  transform: matrix(0.707, -0.707, 0.707, 0.707, -15, 30);
+}
+#svgMenuIcon:checked ~ label path[data-menuIcon="middle"] {
+  animation: none;
+  stroke: transparent; }
+label path[data-menuIcon] { transition: all 1s; }
+
 img { 
   display: block; 
   width: 100%; }

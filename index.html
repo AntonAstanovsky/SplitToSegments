@@ -17,16 +17,22 @@
 
   <header>
     <div id="headerMenu" class="menu inlineComponent" data-navigator="menu">
+
+    <input type="checkbox" name="svgMenuIcon" id="svgMenuIcon" value="svgMenuIcon">
+    <label for="svgMenuIcon">
       <svg class="icon CTA inlineComponent" viewBox="0 0 100 50" data-navigator="dropdown">
-        <path d="M10 10 L90 10" />
-        <path d="M10 25 L90 25" />
-        <path d="M10 40 L90 40" />
+        <path data-menuIcon="upper" d="M10 10 L90 10" />
+        <path data-menuIcon="middle" d="M10 25 L90 25" />
+        <path data-menuIcon="lower" d="M10 40 L90 40" />
       </svg>
       <div id="navigationBar" class="hidden inlineComponent" data-navigator="navigationBar">
         <a class="navigationElement CTA inlineComponent" href="#" data-navigate="goToHomePage"><i class="material-icons">home</i></a>
         <a class="navigationElement CTA inlineComponent" href="#" data-navigate="goToMailersPage"><i class="material-icons">mail_outline</i></a>
       </div>
+    </label>
+    
     </div>
+
     <div class="navigation inlineComponent reminder">
       <img src="assets/fluffy.png">
     </div>

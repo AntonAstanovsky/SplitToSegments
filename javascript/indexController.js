@@ -106,17 +106,22 @@ function addEventListenersToArray (array,event,listenerFunction) {
 }
 
 /* --------------  Element Controlers  -------------- */
-function getChildElementsByAttribute(container,attribute,attributeValue) {
-  let returnArray = [];
-  let childElements = container.children;
-  for(let item of childElements) {
-    if (item.getAttribute(attribute) == attributeValue) {
-      returnArray.push(item);
-    }
+function getChildElementsByAttribute(container,attribute,value) {
+  let childElements;
+  if(value == undefined) { 
+    childElements = container.querySelectorAll(`[` + attribute + `]`); 
+  } else { 
+    childElements = container.querySelectorAll(`[` + attribute + `="` + value + `"]`); 
   }
-  if (returnArray.length > 0) { 
-    return returnArray; 
+  if (childElements.length > 0) { 
+    let children = [];
+    childElements.forEach(( item => { children.push(item); }))
+    return children; 
   }
+  else if(childElements.length == 1) { 
+    return childElements[0]; 
+  }
+  console.log('no attribute:"' + attribute + '" in '+ container.toString());
   return false;
 }
 
@@ -124,7 +129,7 @@ class generalMenu {
   constructor(menu,type,action) {
     this.type = type;
     this.CTA = menu.querySelector("[data-navigator='dropdown']");
-    this.navigator = new navBar(getChildElementsByAttribute(menu,"data-navigator","navigationBar")[0],this.type,action);
+    this.navigator = new navBar(getChildElementsByAttribute(menu,"data-navigator","navigationBar"),this.type,action);
     this.CTA.addEventListener('click', () => { this.navigator.toggleState(); }, false);
   }
   getChoice() {
@@ -167,7 +172,7 @@ class MailerMenu extends generalMenu {
 class navBar {
 
   constructor(navigationBar,type,action) {
-    this.navigationBar = navigationBar;
+    this.navigationBar = navigationBar[0];
     this.state = false;
     this.type = type;
     this.action = action;
@@ -186,7 +191,7 @@ class navBar {
   }
 
   addClickEventListenerToNavigation(handler) {
-    let children = this.navigationBar.children;
+    let children = getChildElementsByAttribute(this.navigationBar,"data-navigate");
     for (let item of children) {
       item.addEventListener('click', handler, false);
     }
