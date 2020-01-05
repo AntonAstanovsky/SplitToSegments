@@ -144,6 +144,9 @@ class generalMenu {
   getNavigator() {
     return this.navigator;
   }
+  emulateClick()  {
+    this.CTA.parentElement.click();
+  }
 }
 
 class dropdownMenu extends generalMenu {
@@ -160,6 +163,9 @@ class dropdownMenu extends generalMenu {
 class headerMenu extends generalMenu {
   constructor(menu) {
     super(menu,"Page","goTo");
+    this.navigator.addClickEventListenerToNavigation(()=>{ 
+      this.emulateClick();
+    });
   }
 }
 
