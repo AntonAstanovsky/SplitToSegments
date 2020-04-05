@@ -168,7 +168,7 @@ class segmentedPlayer extends basicPlayer {
   }
 
   toStringLine() {
-    return this.id + "," + this.segment;
+    return this.id;
   }
 
 }

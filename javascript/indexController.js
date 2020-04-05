@@ -245,7 +245,10 @@ class mailerEditor {
       body: '',
     }
     this.display = displayElement;
-    this.userSelection = { ["type"]: new MailerMenu(typeMenu), ["language"]: new MailerMenu(languageMenu) };
+    this.userSelection = { 
+      ["type"]: new MailerMenu(typeMenu), 
+      ["language"]: new MailerMenu(languageMenu), 
+    };
     this.settings = {
       ["type"]: "sportnewsletter",
       ["language"]: "en",
@@ -290,7 +293,6 @@ class mailerEditor {
         (response) => { 
           if(response) { 
             resolve(response); 
-            //console.log(response); 
           } 
           else { reject(new Error('readContent function Error: ' + response)); }
         } 
@@ -317,6 +319,10 @@ class mailerEditor {
 
 }
 /* --------------  Element Controlers  -------------- */
+
+function showPreviewMailer() {
+  mailerTemplate.readMailerContent();
+}
 
 function toArray(nodeList) {
   var array = [];
