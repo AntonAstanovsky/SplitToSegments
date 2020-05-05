@@ -57,6 +57,9 @@ p:hover {
   word-wrap: break-word;
   word-break: break-word;
   font-family: Arial; }
+.dropFile { 
+  display: block; 
+  margin: 20px auto; }
 .flexWrap { 
   display: flex;
   flex-wrap: wrap; }
@@ -74,22 +77,19 @@ p:hover {
   box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, .5);
   border-radius: 50%;
   width: 10px;
-  height: 10px;
-}
+  height: 10px; }
 .container:after {
-  top: 5px;
-}
+  top: 5px; }
 .container:before {
-  bottom: 5px;
-}
+  bottom: 5px; }
 .container {
   border-top-left-radius: 45px;
   position: relative;
-  background-color: #E6E8E1;
   width: 90%;
   margin: 10px;
   max-width: 300px;
-  padding: 15px 20px; }
+  padding: 15px 20px;
+  backdrop-filter: blur(15px); }
 .container .info { 
   text-align: left; }
 .container .info summary {
@@ -109,8 +109,7 @@ p:hover {
   line-height: 30px; }
 .borderCTA {
   border-style: solid;
-  border-width: 3px;
-}
+  border-width: 3px; }
 .grayCTA {
   border-color: gray;
   color: black; }
